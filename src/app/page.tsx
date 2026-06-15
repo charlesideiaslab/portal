@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <div className="flex flex-col items-center px-6 py-20 sm:py-32">
@@ -12,12 +14,12 @@ export default function Home() {
           pensa como artista e cria como engenheiro.
         </p>
         <div className="flex items-center gap-3 mt-2">
-          <a href="/sobre" className="btn accent">
+          <Link href="/sobre" className="btn accent">
             Conhecer
-          </a>
-          <a href="/contato" className="btn">
+          </Link>
+          <Link href="/contato" className="btn">
             Contato
-          </a>
+          </Link>
         </div>
       </section>
 

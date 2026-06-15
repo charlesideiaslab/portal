@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./globals.css";
 
 const jsonLd = {
@@ -62,7 +63,7 @@ export default function RootLayout({
           <div className="orb" />
         </div>
         <nav className="fixed top-0 left-0 right-0 z-50 h-[52px] flex items-center px-6 backdrop-blur-[80px] border-b border-[var(--border)]">
-          <a href="/" className="flex items-center gap-2 no-underline">
+          <Link href="/" className="flex items-center gap-2 no-underline">
             <span className="w-[18px] h-[18px] grid grid-cols-2 gap-[2px]">
               <span className="w-[8px] h-[8px] rounded-sm border border-[var(--accent)]" />
               <span className="w-[8px] h-[8px] rounded-sm" />
@@ -88,26 +89,26 @@ export default function RootLayout({
                 animation: "dotPulse 1.5s step-end infinite",
               }}
             />
-          </a>
+          </Link>
           <div className="ml-auto flex items-center gap-1">
-            <a
+            <Link
               href="/"
               className="font-mono text-[11px] uppercase tracking-[0.08em] px-3 py-1.5 rounded-md text-[var(--fg2)] hover:text-[var(--fg)] hover:bg-[var(--accent-dim)] transition-all no-underline"
             >
               Home
-            </a>
-            <a
+            </Link>
+            <Link
               href="/sobre"
               className="font-mono text-[11px] uppercase tracking-[0.08em] px-3 py-1.5 rounded-md text-[var(--fg2)] hover:text-[var(--fg)] hover:bg-[var(--accent-dim)] transition-all no-underline"
             >
               Sobre
-            </a>
-            <a
+            </Link>
+            <Link
               href="/contato"
               className="font-mono text-[11px] uppercase tracking-[0.08em] px-3 py-1.5 rounded-md text-[var(--fg2)] hover:text-[var(--fg)] hover:bg-[var(--accent-dim)] transition-all no-underline"
             >
               Contato
-            </a>
+            </Link>
           </div>
         </nav>
         <main className="flex-1 relative z-10 pt-[52px]">{children}</main>
