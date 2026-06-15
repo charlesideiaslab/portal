@@ -1,134 +1,162 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Sobre",
   description:
-    "Conheça Charles — desenvolvedor full-stack, artista digital e criador do BlackBox. Stack, projetos, filosofia criativa e influências.",
+    "Conheça Charles Martins — diretor de arte freelancer, autodidata, criador do Charles Ideias Lab. Nascido em 1986, há mais de 12 anos transformando ideias em projetos criativos.",
   openGraph: {
     title: "Sobre — Charles Ideias Lab",
     description:
-      "Conheça Charles: desenvolvedor, artista e criador do BlackBox.",
+      "Charles Martins: diretor de arte, criativo multimídia e fundador do Charles Ideias Lab.",
   },
 };
 
 export default function Sobre() {
   return (
     <div className="flex flex-col items-center px-6 py-20 sm:py-32">
-      <article className="max-w-3xl w-full flex flex-col gap-8">
-        <span className="badge">Sobre</span>
-        <h1 className="text-[clamp(28px,4vw,42px)] font-bold leading-[1.1] tracking-[-0.02em]">
-          Charles
-        </h1>
-        <p className="text-[var(--fg2)] text-[clamp(15px,2vw,18px)] leading-relaxed font-light">
-          Desenvolvedor full-stack, artista digital e criador do BlackBox —
-          um agente de inteligência de mercado que transforma dados brutos em
-          diagnósticos visuais completos.
-        </p>
+      <article className="max-w-3xl w-full flex flex-col gap-12">
+        <section className="flex flex-col gap-4">
+          <span className="badge">Sobre</span>
+          <h1 className="text-[clamp(28px,4vw,42px)] font-bold leading-[1.1] tracking-[-0.02em]">
+            Charles Martins
+          </h1>
+          <p className="text-[var(--fg2)] text-[clamp(15px,2vw,18px)] leading-relaxed font-light">
+            Diretor de arte freelancer, autodidata, curioso profissional. Há mais
+            de 12 anos criando soluções visuais, audiovisuais e criativas para
+            empresas e pessoas que buscam algo além do óbvio.
+          </p>
+        </section>
 
-        <div className="card flex flex-col gap-4 mt-4">
-          <h2 className="font-semibold text-base">Stack & Ferramentas</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="card flex flex-col gap-2">
+            <span className="font-mono text-[11px] text-[var(--accent)] uppercase tracking-[0.1em]">
+              Nascido em
+            </span>
+            <span className="text-[15px] font-light">1986</span>
+          </div>
+          <div className="card flex flex-col gap-2">
+            <span className="font-mono text-[11px] text-[var(--accent)] uppercase tracking-[0.1em]">
+              Baseado em
+            </span>
+            <span className="text-[15px] font-light">Balneário Camboriú, SC</span>
+          </div>
+          <div className="card flex flex-col gap-2">
+            <span className="font-mono text-[11px] text-[var(--accent)] uppercase tracking-[0.1em]">
+              Desde
+            </span>
+            <span className="text-[15px] font-light">2013 — 12+ anos freelancer</span>
+          </div>
+        </section>
+
+        <section className="flex flex-col gap-4">
+          <h2 className="font-semibold text-base">A História</h2>
+          <div className="flex flex-col gap-3">
+            <p className="text-[13px] text-[var(--fg2)] font-light leading-relaxed">
+              Cresci dando asas à imaginação. Desde cedo, desenhar, criar,
+              montar e desmontar ideias sempre foi mais natural do que seguir
+              roteiros prontos. Não fiz faculdade de design — aprendi fazendo,
+              errando, refazendo. Autodidata desde o primeiro traço.
+            </p>
+            <p className="text-[13px] text-[var(--fg2)] font-light leading-relaxed">
+              Comecei como editor de conteúdo na Videosoft em 2009, onde
+              aprendi na prática o que significa entregar com qualidade dentro
+              de prazos reais. Em 2013, dei o salto para o freelancer — e desde
+              então atendo como diretor de arte sob o pseudônimo Charles Ideias.
+            </p>
+            <p className="text-[13px] text-[var(--fg2)] font-light leading-relaxed">
+              Já são mais de 12 anos de estrada. Atendendo projetos que vão de
+              identidade visual e produção audiovisual a consultoria criativa e
+              direção de arte. Sem agência. Sem intermediário. Do cliente direto
+              ao conceito final.
+            </p>
+          </div>
+        </section>
+
+        <section className="flex flex-col gap-4">
+          <h2 className="font-semibold text-base">O Que Eu Faço</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              ["Frontend", "React, Next.js, TypeScript, Tailwind CSS"],
-              ["3D & WebGL", "Three.js, React Three Fiber, WebGPU"],
-              ["Backend", "Node.js, Python, PostgreSQL"],
-              ["Infra", "GitHub Pages, Cloudflare, Vercel"],
-              ["Design", "Figma, Lucide, glassmorphism, neon"],
-              ["Física", "Matter.js, CANNON.js"],
-            ].map(([area, items]) => (
-              <div key={area} className="flex flex-col gap-1">
-                <span className="font-mono text-[11px] text-[var(--accent)] uppercase tracking-[0.1em]">
-                  {area}
+              ["Direção de Arte", "Conceito, direção criativa e execução visual para marcas, campanhas e projetos autorais."],
+              ["Produção Audiovisual", "Edição, pós-produção e conteúdo em vídeo — do roteiro ao produto final."],
+              ["Identidade Visual", "Logotipos, paletas, tipografia e sistemas visuais completos para negócios de todos os portes."],
+              ["Consultoria Criativa", "Diagnóstico visual, reposicionamento de marca e estratégia de comunicação."],
+            ].map(([titulo, desc]) => (
+              <div key={titulo} className="card flex flex-col gap-2">
+                <span className="font-mono text-[12px] font-semibold tracking-wider">
+                  {titulo}
                 </span>
-                <span className="text-[13px] text-[var(--fg2)] font-light">
-                  {items}
-                </span>
+                <p className="text-[13px] text-[var(--fg2)] font-light leading-relaxed">
+                  {desc}
+                </p>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        <div className="card flex flex-col gap-4">
-          <h2 className="font-semibold text-base">Projetos</h2>
-          <div className="flex flex-col gap-4">
-            <div>
-              <h3 className="font-mono text-[12px] font-semibold tracking-wider">
-                BlackBox
-              </h3>
-              <p className="text-[13px] text-[var(--fg2)] font-light mt-1">
-                Agente de inteligência de mercado. Diagnóstico completo de
-                negócios, concorrência, bairros e personas. Landing page, demo
-                interativa e briefing de ativação disponíveis em{" "}
-                <a
-                  href="https://agenteblackbox.qzz.io"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[var(--accent)] hover:underline"
-                >
-                  agenteblackbox.qzz.io
-                </a>
-                .
-              </p>
-            </div>
-            <div>
-              <h3 className="font-mono text-[12px] font-semibold tracking-wider">
-                Glow-Rider
-              </h3>
-              <p className="text-[13px] text-[var(--fg2)] font-light mt-1">
-                Pinball neon com áudio-reatividade via Web Audio API, Three.js
-                e Matter.js. Experimento pessoal de física e estética retrô-futurista.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-mono text-[12px] font-semibold tracking-wider">
-                NEON ARCHIVE
-              </h3>
-              <p className="text-[13px] text-[var(--fg2)] font-light mt-1">
-                Gerenciador de letras e forja de lyrcs — ferramentas para
-                catalogar e criar letras de música com estética neon.
-              </p>
-            </div>
-          </div>
-        </div>
+        <section className="flex flex-col gap-4">
+          <h2 className="font-semibold text-base">O Charles Ideias Lab</h2>
+          <p className="text-[13px] text-[var(--fg2)] font-light leading-relaxed">
+            O Charles Ideias Lab nasceu como um hub criativo — um lugar onde
+            direção de arte, experimentos em tecnologia, inteligência de mercado
+            e design se encontram. Não é uma agência. É um laboratório. Cada
+            projeto é tratado como um experimento: com método, criatividade e
+            atenção aos detalhes que fazem diferença.
+          </p>
+          <p className="text-[13px] text-[var(--fg2)] font-light leading-relaxed">
+            O portfólio inclui desde o BlackBox (agente de inteligência de
+            mercado) até experimentos com Three.js, motion design e soluções
+            visuais para negócios locais. A premissa é simples: entregar mais
+            do que o esperado, com o olhar de quem entende tanto de estética
+            quanto de estratégia.
+          </p>
+        </section>
 
-        <div className="card flex flex-col gap-4">
-          <h2 className="font-semibold text-base">Filosofia Criativa</h2>
-          <div className="flex flex-col gap-3">
-            <p className="text-[13px] text-[var(--fg2)] font-light leading-relaxed">
-              Nostálgico sem ser piegas. Profundo sem ser pretensioso. Acredito
-              que a melhor tecnologia é invisível — ela serve à experiência, não
-              chama atenção para si mesma.
-            </p>
-            <p className="text-[13px] text-[var(--fg2)] font-light leading-relaxed">
-              Minha estética é noturna: neon sobre preto, glow no escuro, o
-              brilho antes do amanhecer. Faróis, florestas ao anoitecer, trens,
-              verões que terminam. O silêncio também é linguagem — nem tudo
-              precisa ser preenchido.
-            </p>
-            <p className="text-[13px] text-[var(--fg2)] font-light leading-relaxed">
-              Cada projeto que construo carrega um pedaço das obras que me
-              marcaram: Conta Comigo, The Sandlot, Missa da Meia-Noite,
-              Interstellar, Jason Molina. O que consumo vira o que crio.
-            </p>
-          </div>
-        </div>
+        <section className="flex flex-col gap-4">
+          <h2 className="font-semibold text-base">Fora do Trabalho</h2>
+          <p className="text-[13px] text-[var(--fg2)] font-light leading-relaxed">
+            Nas horas vagas, o que sobra de criatividade vira arte pessoal.
+            Experimentos visuais, música, exploração de ferramentas novas,
+            escrita e tudo mais que alimenta o lado imaginativo. Cada projeto
+            pessoal realimenta os projetos profissionais — e vice-versa.
+          </p>
+        </section>
 
-        <div className="card flex flex-col gap-4">
-          <h2 className="font-semibold text-base">Influências</h2>
-          <p className="text-[13px] text-[var(--fg2)] font-light">
-            Cinema, séries, animes, jogos, música e literatura que formaram meu
-            olhar. Documentadas no{" "}
+        <section className="flex flex-col gap-4">
+          <h2 className="font-semibold text-base">Redes & Contato</h2>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/contato"
+              className="btn accent no-underline"
+            >
+              Entrar em Contato
+            </Link>
             <a
-              href="https://github.com/charlesideiaslab/oraculo"
+              href="https://linkedin.com/in/charlesideias"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[var(--accent)] hover:underline"
+              className="btn no-underline"
             >
-              ORÁCULO
+              LinkedIn
             </a>
-            .
-          </p>
-        </div>
+            <a
+              href="https://github.com/Charlesideias"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn no-underline"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.instagram.com/charlesideias"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn no-underline"
+            >
+              Instagram
+            </a>
+          </div>
+        </section>
       </article>
     </div>
   );
