@@ -4,111 +4,96 @@
 
 ---
 
-## 📌 PRÉ-REQUISITOS
+## ✅ JÁ FOI FEITO (pelo Fantasma)
 
-- GitHub: repositório `charlesideiaslab/portal` já existe
-- Projeto Next.js já pronto (3 páginas: Home, Sobre, Contato)
-- Domínios já liberados pelo Open Domains
-
----
-
-## PASSO 1 — CRIAR CONTA NO VERCEL
-
-1. Acesse **https://vercel.com**
-2. Clique em **"Sign Up"** (ou "Login" se já tiver conta)
-3. Escolha **"Continue with GitHub"**
-4. Autorize o Vercel a acessar sua conta GitHub
-5. Pronto — você está no dashboard do Vercel
+| Item | Status |
+|------|--------|
+| Conta Vercel conectada | ✅ `contatocharlesideias-8128` |
+| Deploy do projeto | ✅ **https://charlesideias-portal.vercel.app** |
+| Domínio `charlesideias.is-local.org` adicionado no Vercel | ✅ Aguardando DNS |
+| Domínio `charlesideiaslab.is-local.org` adicionado no Vercel | ✅ Aguardando DNS |
+| Redirect `charlesideiaslab` → `charlesideias` configurado | ✅ via `vercel.json` |
+| `next.config.ts` corrigido (basePath removido) | ✅ |
+| URL nos metadados corrigida | ✅ |
 
 ---
 
-## PASSO 2 — CONECTAR O REPOSITÓRIO
+## ⏳ VOCÊ PRECISA FAZER — DNS no Open Domains
 
-1. No dashboard do Vercel, clique em **"Add New..."** > **"Project"**
-2. Na lista de repositórios, encontre **`charlesideiaslab/portal`**
-3. Clique em **"Import"**
-4. **NÃO MEXA EM NADA** — as configurações padrão já funcionam:
-   - Framework: **Next.js** (detecta automaticamente)
-   - Build Command: `next build` (já vem)
-   - Output Directory: mantém padrão
-5. Role para baixo e clique em **"Deploy"**
-6. Aguarde o build (~1 minuto)
-7. ✅ Pronto! Seu site está no ar em `portal-charles.vercel.app` (ou nome aleatório)
+O Open Domains exige **login com GitHub** para gerenciar DNS (não consigo fazer isso por aqui). Siga os passos abaixo:
 
----
-
-## PASSO 3 — ADICIONAR DOMÍNIO PRINCIPAL
-
-1. No dashboard do projeto, vá em **"Settings"** > **"Domains"**
-2. No campo "Add domain", digite: **`charlesideias.is-local.org`**
-3. Clique em **"Add"**
-4. O Vercel vai mostrar um aviso: **"You need to configure your DNS"**
-5. Anote o **valor de CNAME** que o Vercel mostra (ex: `cname.vercel-dns.com`)
-6. **NÃO FECHE ESSA TELA** — você vai precisar do valor
-
----
-
-## PASSO 4 — CONFIGURAR DNS NO OPEN DOMAINS
+### PASSO 1 — Migrar seus domínios
 
 1. Acesse **https://opendomains.andrewstech.me/login**
-2. Faça login com sua conta **GitHub**
-3. Vai aparecer uma tela pedindo para migrar seus domínios do GitHub — clique em **"Migrate from GitHub"**
-4. Após a migração, vá em **"My Subdomains"** (Meus Subdomínios)
-5. Clique em **"Manage DNS"** ao lado de `charlesideias.is-local.org`
+2. Clique em **"Login with GitHub"**
+3. Autorize o aplicativo
+4. Após entrar, vá em **Dashboard**
+5. Clique em **"Migrate from GitHub"** para migrar seus domínios `charlesideias.is-local.org` e `charlesideiaslab.is-local.org`
 
-### Adicionar o CNAME para o Vercel:
+### PASSO 2 — Adicionar registro A (domínio principal)
+
+1. Vá em **"My Subdomains"**
+2. Clique em **"Manage DNS"** ao lado de `charlesideias.is-local.org`
+3. Clique em **"Add Record"** e preencha:
 
 | Campo | Valor |
 |-------|-------|
-| Type | **CNAME** |
-| Name | **@** (ou deixe vazio, representa o domínio raiz) |
-| Target | **cname.vercel-dns.com** (ou o valor exato que o Vercel mostrou) |
-| TTL | **300** (ou "Auto") |
+| Type | **A** |
+| Name | **@** (deixe vazio ou @) |
+| Value | **76.76.21.21** |
+| TTL | **300** |
 
-6. Clique em **"Add Record"** ou **"Save"**
+4. Clique em **"Save"** ou **"Add Record"**
 
-⏱️ A propagação do DNS pode levar de **5 minutos a 24 horas**.
+> ⚠️ **Importante:** O Vercel recomendou **A record** em vez de CNAME porque o domínio raiz (apex) não aceita CNAME em muitos DNS providers. Use A mesmo.
 
----
+### PASSO 3 — Adicionar registro A (segundo domínio)
 
-## PASSO 5 — VERIFICAR DOMÍNIO NO VERCEL
+Repita o processo para `charlesideiaslab.is-local.org`:
 
-1. Volte ao Vercel (Settings > Domains)
-2. Após o DNS propagar (10-30 min geralmente), o status muda de **"Pending"** para **"Valid"**
-3. ✅ SSL/TLS é configurado automaticamente pelo Vercel (HTTPS grátis)
+| Campo | Valor |
+|-------|-------|
+| Type | **A** |
+| Name | **@** |
+| Value | **76.76.21.21** |
+| TTL | **300** |
 
----
+> O redirect do `charlesideiaslab` para `charlesideias` já está configurado no Vercel. Quando o DNS propagar, o redirect funciona automaticamente.
 
-## PASSO 6 — CONFIGURAR REDIRECIONAMENTO DO SEGUNDO DOMÍNIO
+### PASSO 4 — Aguardar propagação
 
-Para `charlesideiaslab.is-local.org` redirecionar para `charlesideias.is-local.org`:
-
-1. No Vercel, vá em **Settings** > **Domains**
-2. Adicione **`charlesideiaslab.is-local.org`** como domínio
-3. No Open Domains, adicione um CNAME:
-   - Type: **CNAME**
-   - Name: **@** (raiz)
-   - Target: **charlesideias.is-local.org**
-   - TTL: **300**
-4. No Vercel, em Settings > Domains, clique no **"..."** ao lado do domínio
-5. Escolha **"Redirect"**
-6. Configure: redirecionar **`charlesideiaslab.is-local.org`** → **`charlesideias.is-local.org`** (301 permanente)
-7. ✅ Pronto!
+⏱️ **5 a 30 minutos** geralmente. Depois:
+- Vercel detecta automaticamente e emite SSL (HTTPS)
+- O site fica no ar em **https://charlesideias.is-local.org**
+- O domínio `charlesideiaslab.is-local.org` redireciona pro principal
 
 ---
 
-## PASSO 7 — SUBIR ALTERAÇÕES FUTURAS
+## 🚀 SUBIR ALTERAÇÕES FUTURAS
 
-Toda vez que você editar o código no seu computador:
+Toda vez que você editar o código:
 
 ```bash
-# No diretório do projeto:
+cd "E:\PROJETOS CHARLES IDEIAS LAB\PORTAL CHARLES IDEIAS"
 git add -A
 git commit -m "descrição do que mudou"
 git push origin main
 ```
 
-O Vercel detecta automaticamente e faz deploy em segundos. ✅
+O Vercel detecta e faz deploy automático em ~30 segundos. ✅
+
+---
+
+## 🌐 URLs ÚTEIS
+
+| Recurso | URL |
+|---------|-----|
+| Site (provisório) | https://charlesideias-portal.vercel.app |
+| Site (final, após DNS) | https://charlesideias.is-local.org |
+| Dashboard Vercel | https://vercel.com/charles-ideias-lab-s-projects/charlesideias-portal |
+| GitHub | https://github.com/charlesideiaslab/portal |
+| Open Domains | https://opendomains.andrewstech.me/ |
+| Formspree (formulário) | https://formspree.io (criar conta e pegar form ID) |
 
 ---
 
@@ -116,26 +101,13 @@ O Vercel detecta automaticamente e faz deploy em segundos. ✅
 
 | Problema | Solução |
 |----------|---------|
-| DNS "Pending" no Vercel por horas | O CNAME pode estar errado. Confira o valor exato no Vercel. Ou use **A records** (abaixo) |
-| Site aparece como "Not Found" | No Open Domains, confira se o CNAME aponta para o valor correto |
-| HTTPS não funciona | Vercel emite SSL automaticamente após validar o domínio (~1 minuto) |
-| Erro de build no Vercel | Verifique se o Next.js compila localmente com `npm run build` |
-
-### Alternativa: Usar A Records (se CNAME não funcionar no domínio raiz)
-
-Se o `.is-local.org` não suportar CNAME no domínio raiz (muitos DNS não permitem):
-
-1. No Vercel, vá em Settings > Domains, clique no domínio
-2. Veja os **endereços IP** sugeridos pelo Vercel (geralmente 4 IPs)
-3. No Open Domains, em vez de CNAME, adicione **4 registros A**:
-   - Type: **A** | Name: **@** | Value: **76.76.21.21**
-   - Type: **A** | Name: **@** | Value: **76.76.21.22**
-   - Type: **A** | Name: **@** | Value: **76.76.21.98**
-   - Type: **A** | Name: **@** | Value: **76.76.21.123**
-4. Os IPs exatos aparecem no Vercel em **Settings > Domains**
+| DNS "Pending" no Vercel por horas | Verifique se o A record está correto no Open Domains |
+| Site aparece como "Not Found" | Confira o IP: deve ser **76.76.21.21** |
+| HTTPS não funciona | Vercel emite SSL automaticamente após validar o domínio |
+| Formulário de contato quebrado | O action `formspree.io/f/...` tem placeholder — precisa criar conta no Formspree e substituir |
 
 ---
 
-> 💡 **Dica:** Depois de configurar, qualquer alteração que você der `git push origin main` já sobe automaticamente. Você nem precisa abrir o Vercel de novo — só esperar ~30 segundos e atualizar o navegador.
+> 💡 **Dica:** Depois do DNS configurado, o Vercel cuida de SSL, deploy automático e redirects. Você só precisa dar `git push` pra atualizar o site.
 
 **CHARLES IDEIAS LAB · 2026**
