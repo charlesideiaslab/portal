@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: "Charles Ideias Lab",
     description:
       "Criatividade, código e inteligência de mercado — o hub central de Charles.",
-    url: "https://charlesideiaslab.com",
+  url: "https://charlesideias.is-local.org",
     siteName: "Charles Ideias Lab",
     locale: "pt_BR",
     type: "website",
